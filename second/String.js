@@ -6,3 +6,6 @@ const min = Number.MIN_VALUE; // 표현 할 수 있는 가장 작은 숫자
 const nInf = Number.NEGATIVE_INFINITY; // -무한대
 const nan = Number.NaN;// NAN
 const inf = Number.POSITIVE_INFINITY;// + 무한대
+
+const result1 = 3 + '30'; // 3이 문자열로 변경되어 '330'
+const result2 = 3 * '30'; // '30'이 숫자열로 변경되어 90
