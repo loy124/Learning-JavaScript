@@ -29,6 +29,9 @@ sam3.speak(); //"Meow!"" 함수호출
 
 delete sam3.speak; // speak 함수 제거
 
+const s = "hello"
+s.rating = 3; //임시 객체 선언
+s.rating; //undefined
 
 
 
