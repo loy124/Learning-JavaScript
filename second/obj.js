@@ -18,13 +18,13 @@ const sam3 = {
     species: 'catus',
   }, // classification 프로퍼티는 그 자체가 객체이다
 };
-sam3.classification.family;// "Felidae"
-sam3.classification.family;// "Felidae"
-sam3.classification.family;// "Felidae"
-sam3.classification.family;// "Felidae"
+sam3.classification.family; // "Felidae"
+sam3.classification.family; // "Felidae"
+sam3.classification.family; // "Felidae"
+sam3.classification.family; // "Felidae"
 
-sam3.speak = function () {
-  return 'Meow!'; 
+sam3.speak = function() {
+  return 'Meow!';
 };
 sam3.speak(); // "Meow!"" 함수호출
 
@@ -33,6 +33,3 @@ delete sam3.speak; // speak 함수 제거
 const s = 'hello';
 s.rating = 3; // 임시 객체 선언
 s.rating; // undefined
-
-
-
