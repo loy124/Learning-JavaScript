@@ -12,6 +12,4 @@ parserOptions:
   ecmaVersion: 2018
 plugins:
   - react
-rules: {
-  "no-console": 0
-}
+rules: {}
