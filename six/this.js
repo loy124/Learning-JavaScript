@@ -30,6 +30,22 @@ const o = {
     }
 };
 o.greetBackWards();
+//화살표함수는 this가 정적으로 묶인다, 따라서 위에함수에서 this를 따로 선언하지 않더라도 정확하게 사용이 가능  argument함수 사용불가,객체 생성자 사용 불가
+const o = {
+    name: 'Julie',
+    greetBackWards: function() {
+        const self = this;
+        function getReverseName() => {
+            let nameBackwards= '';
+            for(let i =self.name.length-1; i >=0; i--) {
+                nameBackwards += self.name[i];
+            }
+            return nameBackwards
+        }
+        return `${getReverseName()} si eman ym, olleH`;
+    }
+};
+o.greetBackWards();
 
 // 익명함수가 아닌 함수를 쓰는 이유 예시
 const g = function f(stop) {
@@ -50,20 +66,3 @@ const f2 = name => `hello, ${name}!`;
 const f3 = function(a,b) {return a * b; }
 //또는
 const f3 = (a,b) => a * b;
-
-//화살표함수는 this가 정적으로 묶인다, 따라서 위에함수에서 this를 따로 선언하지 않더라도 정확하게 사용이 가능  argument함수 사용불가,객체 생성자 사용 불가
-const o = {
-    name: 'Julie',
-    greetBackWards: function() {
-        const self = this;
-        function getReverseName() => {
-            let nameBackwards= '';
-            for(let i =self.name.length-1; i >=0; i--) {
-                nameBackwards += self.name[i];
-            }
-            return nameBackwards
-        }
-        return `${getReverseName()} si eman ym, olleH`;
-    }
-};
-o.greetBackWards();
