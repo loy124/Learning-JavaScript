@@ -1,4 +1,4 @@
-//거꾸로 나오는 함수를 만들어보자 to.get
+//거꾸로 나오는 함수를 만들어보자 오류가 난다
 const o = {
     name: 'Julie',
     greetBackWards: function() {
