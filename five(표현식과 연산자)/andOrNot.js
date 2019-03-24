@@ -11,4 +11,14 @@ const result1 = doIt ? "Did it1": "Didn't do it." //3항 연산자
 const options = suppliedOptions || {name: "Default"} //빈객체더라도 참같은 값으로 평가가된다.
 
 let q = 0, w = 10, e;
-e = (q++, w++) //쉼표연산자, 두 표현식을 평가한후 두번쨰 표현식의 결과를 반환한다. x와 y는 1만큼ㄴ 늘어나지만 z의 값은 10이다
+e = (q++, w++) //쉼표연산자, 두 표현식을 평가한후 두번쨰 표현식의 결과를 반환한다. x와 y는 1만큼 늘어나지만 z의 값은 10이다
+
+const FLAG_EXECUTE = 1 //0b001
+const FLAG_WRITE = 2 //0b010
+const FLAG_READ = 4 //0b100
+
+let p = FLAG_READ | FLAG_WRITE; //0b110
+let hasWrite = p & FLAG_WRITE; //0b010 참같은값
+let hasExecute = p & FLAG_EXECUTE; //0b000 거짓같은값
+p = p ^ FLAG_WRITE; //0b100 쓰기 플래그 토글 (쓰기권한이 없다)
+P = P ^ FLAG_WRITE;// 0b110 쓰기 플래그 토글 (쓰기 권한이 다시 생겻다)

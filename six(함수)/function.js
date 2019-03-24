@@ -108,19 +108,6 @@ const speak = o.speak;
 speak === o.speak; // true
 speak(); //my name is undefined
 
-// 다른변수에 this를 할당해서 정확한 this  호출하기
-const o = {
-    name: 'Julie',
-    greetBackWards: function() {
-        const self = this;
-        function getReverseName() {
-            let nameBackwards= '';
-            for(let i =self.name.length-1; i >=0; i--) {
-                nameBackwards += self.name[i];
-            }
-            return nameBackwards
-        }
-        return `${getReverseName()} si eman ym, olleH`;
-    }
-};
-o.greetBackWards();
+
+
+
