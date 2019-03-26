@@ -108,6 +108,76 @@ const speak = o.speak;
 speak === o.speak; // true
 speak(); //my name is undefined
 
+//일급 객체
+//무명의 리터럴로 표현이 가능하다
+// 변수나 자료구조에 저장할 수 있다
+// 함수의 매개변수에 전달 할 수있다
+// 반환값으로 사용할 수있다
 
+//무명의 리터럴로 표현이 가능하다
+// 변수나 자료구조에 저장할 수 있다
+var increase = function (num) {
+    return ++num;
+};
 
+var decrease = function (num) {
+    return --num;
+};
+
+var predicate = { increase, decrease};
+
+// 함수의 매개변수에 전달 할 수있다
+// 반환값으로 사용할 수있다
+
+function makeCounter(predicate) {
+    var num = 0;
+    return function () {
+        num = predicate(num);
+        return num;
+    };
+}
+
+var increaser = makeCounter(predicate.increase);
+console.log(increaser()); //1
+console.log(increaser()); //2
+
+var decreaser = makeCounter(predicate.decrease);
+console.log(decreaser()); //1
+console.log(decreaser()); //2
+
+//재귀 함수 (자기 자신을 가리키는 함수)
+//자신을 무한히 연쇄 호출하므로 탈출조건을 만들어야한다.
+//피보나치 수열 
+function fibo(n) {
+    if (n < 2) retrun n;
+    return fibo(n - 1) + fibo(n - 2);
+}
+console.log(fibo(0)); // 0
+console.log(fibo(1)); // 1
+console.log(fibo(2)); // 1
+console.log(fibo(3)); // 2
+console.log(fibo(4)); // 3
+console.log(fibo(5)); // 5
+console.log(fibo(6)); // 8
+
+//팩토리얼 
+//n! = 1 * 2 * ... * (n-1) * n
+fucntion facto(n) {
+    if (n < 2) return 1;
+    return facto(n - 1) * n;
+}
+console.log(facto(0)); // 1
+console.log(facto(1)); // 1
+console.log(facto(2)); // 2
+console.log(facto(3)); // 6
+console.log(facto(4)); // 24
+console.log(facto(5)); // 120
+console.log(facto(6)); // 720
+
+//콜백 함수
+//특정 이벤트가 발생하였을때 호출하는 함수, 비동기식 처리 모델에 사용된다
+var button = document.getElementById('myButton');
+    button.addEventListener('click', function() {
+      console.log('콜백button clicked!');
+    });
 
