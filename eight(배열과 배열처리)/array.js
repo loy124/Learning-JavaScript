@@ -98,17 +98,3 @@ arr.indexOf('a'); //2
 arr.lastIndexOf('a'); //2
 arr.indexOf([1, 2]); // -1
 arr.indexOf('9'); //7
-
-//findIndex는 일치하는것을 찾지못했을때 -1을 반환한다
-//보조함수를 써서 다양한 상황에서 활용이 가능하다
-//조건에 맞는 인덱스를 찾을때 사용
-const arr = [{ id: 5, name: 'Judith'}, {id: 7, name: 'Francis'}];
-arr.findIndex(o => o.id === 5); //0
-arr.findIndex(o => o.name === 'Francis'); //1
-arr.findIndex(o => o === 3); // -1
-
-//요소자체를 원할때는 find를 사용한다
-//없을시에 undefined 반환
-const arr = [{ id: 5, name: 'Judith'}, {id: 7, name: 'Francis'}];
-arr.find(o => o.id === 5); // 객체{id: 5, name: 'Judith}
-arr.find(o => o.id === 2); //undefined
