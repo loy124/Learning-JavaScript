@@ -34,3 +34,27 @@ const ts = d.valueOf(); //70년 1월 1일로부터 몇밀리초가 지났는지 
 
 const arr = [1,true,"hello"];
 arr.toString(); //"1,true,hello"
+
+//배열의 해체할당
+let [ , , second] = ['red', 'whie', 'orange']
+
+second //orange
+
+//rest parameter
+const arr = [ 1, 2, 3, 4, 5]
+const[ a, ...b] = arr
+const[, , ...c] = arr
+console.log(a, b, c) //1 [2,3,4,5] [3, 4, 5]
+
+const [c, d = c * 2] = [5] //c = 5 d = 10
+
+const arr = [1, [2, [3, 4], 5], 6]
+
+const [a,[b,[, c],], d] = arr
+
+console.log(a, b, c, d) //1, 2, 4, 6
+
+var a = 10;
+var b = 20;
+[b, a] = [a, b] //값 바꾸기
+//a 20 b 10

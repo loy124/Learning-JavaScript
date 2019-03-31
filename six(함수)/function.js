@@ -180,4 +180,63 @@ var button = document.getElementById('myButton');
     button.addEventListener('click', function() {
       console.log('콜백button clicked!');
     });
+//화살표 함수
+//(매개변수) => {본문}
+// 매개변수가 하나일 경우 괄호 생략가능
+// 매개변수가 없을 경우에는 괄호 필수
+// return 식 or 값 뿐일 경우 { } 와 return 생략가능
+//실행컨텍스트 생성시 this 바인딩을 하지 않음
+//arrow function은 함수스코퍼를 생성한다, 다만 실행컨텍스트 생성시 this 바인딩 x
+var b = _ => 10;
+var b = () => 10;
 
+var e = function(x) {
+    return {
+        x : x
+    }
+}
+//변환
+
+var e = x => ({
+    x : x //x (단축 프로터피)
+})
+
+var f = function(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+
+//변환
+ 
+var f = a => b => a + b;
+
+//this 바인딩 관련
+const obj = {
+    a () {
+        console.log(this) 
+
+        const b = () => {
+            console.log(this) // obj의 this와 같다 그래서 외부 스코프에서 탐색,
+        }
+        b()
+    }
+}
+obj.a()
+
+var total = 0;
+const obj = {
+    grades : [80, 90 , 100],
+    getTotal : function() {
+        this.total = 0
+        this.grades.forEach(funciton(v) {
+            this.total += v //this : window
+        } ,//this를 넣음으로 obj.total해결)
+        //this. grades.forEach(v => {
+        // this.total += v} 로도 가능
+        })
+    }
+}
+obj.getTotal()
+total //270
+obj.total // 0
