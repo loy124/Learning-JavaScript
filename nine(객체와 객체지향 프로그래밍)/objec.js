@@ -31,6 +31,54 @@ Object.keys(o)
 //출처:https://infoscis.github.io/2018/02/13/ecmascript-6-introducing-javascript-classes/
 //인스턴스를 만들떄는 new키워드 사용
 
+class Car {
+    constructor(make, model) {
+        this.make = make;
+        this.model = model;
+        this.userGears = ['P', 'N', 'R', 'D'];
+    }
+    shift(gear) {
+        if(this.userGears.indexOf(gear) < 0)
+            throw new Error(`Invalid gear: ${gear}`);
+        this.userGear = gear;
+    }
+}
+//this는 나중에 만들 인스턴스의 플레이스 홀더
+const car1 = new Car('tesla', 'model s');
+const car2 = new Car('mazda', '3i');
+car1.shift('D'); // 드라이브, 호출시 this는 car1에 묶인다
+car2.shift('R'); //후진
+car1.userGear //'D' 
+car2.userGear //'R'
+
+//car1.userGear = 'x'라 지정하면 보호되지 않는다
+//완벽한 보호를 하려면 WeakMap 사용
+//WeakMap은 클래스외부에서 접근하면 안되는 프로퍼티를 안전하게 저장
+const Car (function() {
+    const carProps = new WeakMap();
+    class Car {
+        constructor(make,model) {
+            this.make = make;
+            this.model = model;
+            this._userGears = ['P', 'N', 'R', 'D'];
+            carProps.set(this, { userGear: this._userGears[0]});
+        }
+
+get userGear() {return carProps.get(this).userGear;}
+set userGear(value) {
+    if(this._userGears.indexOf(value) < 0)
+        throw new Error(`Invalid gear: ${value}`);
+    carProps.get(this).userGear = value;
+}
+
+shift(gear) { this.userGear = gear; }
+}
+
+return Car;
+})();
+
+
+
 //class 이전의 생성 방법
 function PersonType(name) {
     this.name = name;
@@ -90,49 +138,3 @@ let PersonType2 = (function() {
     return PersonType2;
 }());
 
-
-class Car {
-    constructor(make, model) {
-        this.make = make;
-        this.model = model;
-        this.userGears = ['P', 'N', 'R', 'D'];
-    }
-    shift(gear) {
-        if(this.userGears.indexOf(gear) < 0)
-            throw new Error(`Invalid gear: ${gear}`);
-        this.userGear = gear;
-    }
-}
-//this는 나중에 만들 인스턴스의 플레이스 홀더
-const car1 = new Car('tesla', 'model s');
-const car2 = new Car('mazda', '3i');
-car1.shift('D'); // 드라이브, 호출시 this는 car1에 묶인다
-car2.shift('R'); //후진
-car1.userGear //'D' 
-car2.userGear //'R'
-
-//car1.userGear = 'x'라 지정하면 보호되지 않는다
-//완벽한 보호를 하려면 WeakMap 사용
-
-const Car (function() {
-    const carProps = new WeakMap();
-    class Car {
-        constructor(make,model) {
-            this.make = make;
-            this.model = model;
-            this._userGears = ['P', 'N', 'R', 'D'];
-            carProps.set(this, { userGear: this._userGears[0]});
-        }
-
-get userGear() {return carProps.get(this).userGear;}
-set userGear(value) {
-    if(this._userGears.indexOf(value) < 0)
-        throw new Error(`Invalid gear: ${value}`);
-    carProps.get(this).userGear = value;
-}
-
-shift(gear) { this.userGear = gear; }
-}
-
-return Car;
-})();
