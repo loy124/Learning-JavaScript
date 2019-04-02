@@ -1,5 +1,6 @@
 //WeakMap
 // key에 참조형 데이터만 올 수 있다
+//가비지 컬렉션에 포함될 수있다.
 //참조 카운트를 증가시키지 않는다
 //itrable 하지 않는다
 // for of 사용불가
@@ -24,6 +25,28 @@ keysArray.forEach((v, i) => {
 // 사용 불가
 
 //비공개 객체 멤버
+
+const SecretHolder = (function() {
+    const secrets = new WeakMap();
+    return class {
+        setSecret(secret) {
+            secrets.set(this,secret);
+        }
+        getSecret() {
+            return secrets.get(this);
+        }
+    }
+})();
+
+const a = new SecretHolder();
+const b = new SecretHolder();
+
+a.setSecret('secret A')
+b.setSecret('secret B')
+
+a.getSecret(); //'Secret A'
+b.getSecret(); //'secret B'
+
 //완벽한 은닉화
 const weakmapValueAdder = (wmap, key, addValue) => {
     wmap.set(key, Object.assign{}, wmap.get(key), addValue)
