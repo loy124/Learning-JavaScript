@@ -180,6 +180,7 @@ var button = document.getElementById('myButton');
     button.addEventListener('click', function() {
       console.log('콜백button clicked!');
     });
+
 //화살표 함수
 //(매개변수) => {본문}
 // 매개변수가 하나일 경우 괄호 생략가능
@@ -187,6 +188,7 @@ var button = document.getElementById('myButton');
 // return 식 or 값 뿐일 경우 { } 와 return 생략가능
 //실행컨텍스트 생성시 this 바인딩을 하지 않음
 //arrow function은 함수스코퍼를 생성한다, 다만 실행컨텍스트 생성시 this 바인딩 x
+//call등으로 this 바인딩이 불가능하다( 하지만 역활은 수행한다)
 var b = _ => 10;
 var b = () => 10;
 
@@ -239,4 +241,6 @@ const obj = {
 }
 obj.getTotal()
 total //270
-obj.total // 0
+obj.total // 0 
+
+
